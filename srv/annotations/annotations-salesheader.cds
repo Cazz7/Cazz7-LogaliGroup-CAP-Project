@@ -1,6 +1,8 @@
 using { Sales as service } from '../service';
 
-annotate service.Products with {
+annotate service.SalesHeader with @odata.draft.enabled;
+
+annotate service.SalesHeader with {
     email      @title: 'Email';
     firstname  @title: 'First Name';
     lastname  @title: 'Last Name';
