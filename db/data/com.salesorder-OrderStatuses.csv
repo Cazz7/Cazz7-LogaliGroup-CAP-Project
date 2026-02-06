@@ -1,1 +1,4 @@
-code,criticality,name,descr
+code,name,criticality
+Accepted,Accepted,3
+New,New,1
+Cancelled,Cancelled,2

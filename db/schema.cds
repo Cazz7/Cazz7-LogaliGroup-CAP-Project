@@ -43,9 +43,9 @@ entity SalesItems : cuid {
 
 entity OrderStatuses : CodeList {
     key code        : String enum {
-            InStock = 'New';
-            OutOfStock = 'Accepted';
-            LowAvailability = 'Cancelled';
+            New = 'New';
+            Accepted = 'Accepted';
+            Cancelled = 'Cancelled';
         }
         criticality : Int16; // 1,2,3,5
 };

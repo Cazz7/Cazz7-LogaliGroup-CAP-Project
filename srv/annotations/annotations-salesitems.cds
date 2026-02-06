@@ -15,7 +15,9 @@ annotate service.SalesItems with {
 //imageURL        @title: 'Image URL';
 };
 
-annotate service.SalesHeader with @(UI.LineItem: [
+annotate service.SalesItems with @(
+
+UI.LineItem: [
     {
         $Type: 'UI.DataField',
         Value: name
@@ -34,7 +36,11 @@ annotate service.SalesHeader with @(UI.LineItem: [
     },
     {
         $Type: 'UI.DataField',
-        Value: price
+        Value: price,
+            @HTML5.CssDefaults: {
+                $Type: 'HTML5.CssDefaultsType',
+                width: '10rem'
+            }
     },
     {
         $Type: 'UI.DataField',
@@ -60,4 +66,6 @@ annotate service.SalesHeader with @(UI.LineItem: [
         $Type: 'UI.DataField',
         Value: unitOfMeasure
     }
-]);
+]
+
+);
