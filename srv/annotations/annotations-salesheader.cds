@@ -1,5 +1,7 @@
 using {Sales as service} from '../service';
 
+using from './annotations-countries';
+
 annotate service.SalesHeader with @odata.draft.enabled;
 
 annotate service.SalesHeader with {
@@ -18,10 +20,10 @@ annotate service.SalesHeader with {
     country @Common: {
         Text           : country.name,
         TextArrangement: #TextOnly,
-        // To modify the value list fields
+        // To modify the value help fields
         ValueList : {
             $Type : 'Common.ValueListType',
-            CollectionPath : 'Currencies',
+            CollectionPath : 'Countries',
             Parameters : [{
                 $Type : 'Common.ValueListParameterInOut',
                 LocalDataProperty : country_code,
@@ -34,9 +36,9 @@ annotate service.SalesHeader with {
 annotate service.SalesHeader with @(
     //Filters
     UI.SelectionFields: [
-        orderStatus,
+        orderStatus_code,
         deliveryDate,
-        country
+        country_code
     ],
     //Header
     UI.HeaderInfo     : {
