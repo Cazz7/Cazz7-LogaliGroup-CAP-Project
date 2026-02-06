@@ -16,8 +16,8 @@ entity SalesHeader : cuid, managed {
     country      : Association to Countries;
     createdOn    : Date;
     deliveryDate : Date;
-    orderStatus  : Association to OrderStatuses;
-    imageURL     : LargeBinary  @Core.MediaType: imageType  @UI.IsImage;
+    status  : Association to OrderStatus;
+    imageURL     : String(10);//LargeBinary  @Core.MediaType: imageType  @UI.IsImage;
     toItems      : Composition of many SalesItems
                        on toItems.header = $self
 }
@@ -41,7 +41,7 @@ entity SalesItems : cuid {
 
 }
 
-entity OrderStatuses : CodeList {
+entity OrderStatus : CodeList {
     key code        : String enum {
             New = 'New';
             Accepted = 'Accepted';

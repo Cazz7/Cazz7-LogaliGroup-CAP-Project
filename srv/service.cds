@@ -8,5 +8,5 @@ service Sales {
 
     //value helps
     @readonly
-    entity VH_Status as projection on entities.OrderStatuses;
+    entity VH_Status as projection on entities.OrderStatus;
 }
