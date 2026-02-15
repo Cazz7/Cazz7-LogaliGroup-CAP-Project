@@ -47,7 +47,7 @@ annotate service.SalesHeader with @(
         $Type         : 'UI.HeaderInfoType',
         TypeName      : 'Sale',
         TypeNamePlural: 'Sales',
-        //Object page
+        //Object page (New entry)
         Title : {
             $Type : 'UI.DataField',
             Value : firstname
@@ -97,17 +97,39 @@ annotate service.SalesHeader with @(
             }
         ]
     },
+    UI.FieldGroup #OrderStatus       : {
+        $Type: 'UI.FieldGroupType',
+        Data : [{
+            $Type               : 'UI.DataField',
+            Value               : status_code,
+            Criticality         : status.criticality,
+            Label               : ''/*,
+            @Common.FieldControl: {$edmJson: {$If: [
+                {$Eq: [
+                    {$Path: 'IsActiveEntity'},
+                    false
+                ]},
+                1,
+                3
+            ]}}*/
+        }]
+    },
     //Container[
     UI.HeaderFacets : [
         {
             $Type : 'UI.ReferenceFacet',
             Target : '@UI.FieldGroup#HeaderCol1',
-            Label : ''
+            Label : 'General Info'
         },
         {
             $Type : 'UI.ReferenceFacet',
             Target : '@UI.FieldGroup#HeaderCol2',
-            Label : ''
+            Label : 'Name '
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Target: '@UI.FieldGroup#OrderStatus',
+            Label : 'Order Status'
         }
     ],
 
@@ -139,8 +161,18 @@ annotate service.SalesHeader with @(
         },
         {
             $Type      : 'UI.DataField',
-            Value      : status.code,
+            Value      : status.name,
             Criticality: status.criticality
+        }
+    ],
+    UI.Facets                         : [
+
+        {
+            $Type : 'UI.ReferenceFacet',
+            Target: 'toItems/@UI.LineItem',
+            Label : 'Sales Item',
+            ID    : 'toItems'
         }
     ]
 );
+// 1:40 video 12. Estoy con la duda de que debo poner en el object page para habilitar la navegación

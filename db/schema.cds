@@ -41,11 +41,20 @@ entity SalesItems : cuid {
 
 }
 
-entity OrderStatus : CodeList {
+/*entity OrderStatus : CodeList {
     key code        : String enum {
             New = 'New';
             Accepted = 'Accepted';
             Cancelled = 'Cancelled';
+        }
+        criticality : Int16; // 1,2,3,5
+};*/
+
+entity OrderStatus : CodeList {
+    key code        : String enum {
+            InStock = 'In Stock';
+            OutOfStock = 'Out of Stock';
+            LowAvailability = 'Low Availability';
         }
         criticality : Int16; // 1,2,3,5
 };
