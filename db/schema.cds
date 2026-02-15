@@ -17,7 +17,8 @@ entity SalesHeader : cuid, managed {
     createdOn    : Date;
     deliveryDate : Date;
     status  : Association to OrderStatus;
-    imageURL     : String(10);//LargeBinary  @Core.MediaType: imageType  @UI.IsImage;
+    image     : LargeBinary  @Core.MediaType: imageType  @UI.IsImage;
+    imageType : String @Core.IsMediaType;
     toItems      : Composition of many SalesItems
                        on toItems.header = $self
 }

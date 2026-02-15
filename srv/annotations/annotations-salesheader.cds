@@ -13,8 +13,8 @@ annotate service.SalesHeader with {
     country      @title: 'Country';
     createdOn    @title: 'Created On';
     deliveryDate @title: 'Delivery Date';
-    status  @title: 'Order Status';
-//imageURL        @title: 'Image URL';
+    status       @title: 'Order Status';
+    image        @title: 'Image';
 };
 
 //Print text only
@@ -23,107 +23,121 @@ annotate service.SalesHeader with {
         Text           : country.name,
         TextArrangement: #TextOnly,
         // To modify the value help fields
-        ValueList : {
-            $Type : 'Common.ValueListType',
-            CollectionPath : 'Countries',
-            Parameters : [{
-                $Type : 'Common.ValueListParameterInOut',
-                LocalDataProperty : country.code,
-                ValueListProperty : 'code',
-            },]
+        ValueList      : {
+            $Type         : 'Common.ValueListType',
+            CollectionPath: 'Countries',
+            Parameters    : [{
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: country.code,
+                ValueListProperty: 'code',
+            }, ]
         },
     }
 }
 
 annotate service.SalesHeader with @(
     //Filters
-    UI.SelectionFields: [
+    UI.SelectionFields        : [
         orderStatus_code,
         deliveryDate,
         country_code
     ],
     //Header
-    UI.HeaderInfo     : {
+    UI.HeaderInfo             : {
         $Type         : 'UI.HeaderInfoType',
         TypeName      : 'Sale',
         TypeNamePlural: 'Sales',
         //Object page (New entry)
-        Title : {
-            $Type : 'UI.DataField',
-            Value : firstname
+        Title         : {
+            $Type: 'UI.DataField',
+            Value: firstname
         },
-        Description : {
-            $Type : 'UI.DataField',
-            Value : createdOn 
+        Description   : {
+            $Type: 'UI.DataField',
+            Value: createdOn
         }
     },
     //The field group to display details of each Sales Header
     // It does not display by itself}. It needs a container
     // We need another field group for an extra column of fields
     // For this purpose a Qualifier (#HeaderCol1) is necessary
+    UI.FieldGroup #Image      : {
+        $Type: 'UI.FieldGroupType',
+        //Fields to be grouped
+        Data : [{
+            @Type: 'UI.DataField',
+            Value: image,
+            Label: ''
+        }]
+    },
     UI.FieldGroup #HeaderCol1 : {
-        $Type : 'UI.FieldGroupType',
+        $Type: 'UI.FieldGroupType',
         //Fields to be grouped
         Data : [
             {
-                @Type : 'UI.DataField',
-                Value : email
+                @Type: 'UI.DataField',
+                Value: email
             },
             {
-                @Type : 'UI.DataField',
-                Value : country
+                @Type: 'UI.DataField',
+                Value: country
             },
             {
-                @Type : 'UI.DataField',
-                Value : orderStatus.descr
+                @Type: 'UI.DataField',
+                Value: orderStatus.descr
             }
         ]
     },
     UI.FieldGroup #HeaderCol2 : {
-        $Type : 'UI.FieldGroupType',
+        $Type: 'UI.FieldGroupType',
         //Fields to be grouped
         Data : [
             {
-                @Type : 'UI.DataField',
-                Value : firstname
+                @Type: 'UI.DataField',
+                Value: firstname
             },
             {
-                @Type : 'UI.DataField',
-                Value : lastname
+                @Type: 'UI.DataField',
+                Value: lastname
             },
             {
-                @Type : 'UI.DataField',
-                Value : createdOn
+                @Type: 'UI.DataField',
+                Value: createdOn
             }
         ]
     },
-    UI.FieldGroup #OrderStatus       : {
+    UI.FieldGroup #OrderStatus: {
         $Type: 'UI.FieldGroupType',
         Data : [{
-            $Type               : 'UI.DataField',
-            Value               : status_code,
-            Criticality         : status.criticality,
-            Label               : ''/*,
-            @Common.FieldControl: {$edmJson: {$If: [
-                {$Eq: [
-                    {$Path: 'IsActiveEntity'},
-                    false
-                ]},
-                1,
-                3
-            ]}}*/
+            $Type      : 'UI.DataField',
+            Value      : status_code,
+            Criticality: status.criticality,
+            Label      : '' /*,
+    @Common.FieldControl: {$edmJson: {$If: [
+        {$Eq: [
+            {$Path: 'IsActiveEntity'},
+            false
+        ]},
+        1,
+        3
+    ]}}*/
         }]
     },
     //Container[
-    UI.HeaderFacets : [
+    UI.HeaderFacets           : [
         {
             $Type : 'UI.ReferenceFacet',
-            Target : '@UI.FieldGroup#HeaderCol1',
+            Target: '@UI.FieldGroup#Image',
+            Label : 'Image'
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Target: '@UI.FieldGroup#HeaderCol1',
             Label : 'General Info'
         },
         {
             $Type : 'UI.ReferenceFacet',
-            Target : '@UI.FieldGroup#HeaderCol2',
+            Target: '@UI.FieldGroup#HeaderCol2',
             Label : 'Name '
         },
         {
@@ -134,7 +148,7 @@ annotate service.SalesHeader with @(
     ],
 
     // Including columns
-    UI.LineItem       : [
+    UI.LineItem               : [
         {
             $Type: 'UI.DataField',
             Value: email
@@ -163,16 +177,19 @@ annotate service.SalesHeader with @(
             $Type      : 'UI.DataField',
             Value      : status.name,
             Criticality: status.criticality
+        },
+        {
+            $Type: 'UI.DataField',
+            Value: image
         }
     ],
-    UI.Facets                         : [
+    UI.Facets                 : [
 
-        {
-            $Type : 'UI.ReferenceFacet',
-            Target: 'toItems/@UI.LineItem',
-            Label : 'Sales Item',
-            ID    : 'toItems'
-        }
-    ]
+    {
+        $Type : 'UI.ReferenceFacet',
+        Target: 'toItems/@UI.LineItem',
+        Label : 'Sales Item',
+        ID    : 'toItems'
+    }]
 );
 // 1:40 video 12. Estoy con la duda de que debo poner en el object page para habilitar la navegación

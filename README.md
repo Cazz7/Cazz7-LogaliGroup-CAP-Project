@@ -19,6 +19,14 @@ File or Folder | Purpose
 - (in VS Code simply choose _**Terminal** > Run Task > cds watch_)
 - Start adding content, for example, a [db/schema.cds](db/schema.cds).
 
+## Deploy in DEV with sqlite test DB
+
+- to deploy by using sqlite use "cds deploy --profile dev"
+- Then, to see the data: 
+- Clic on SQLTools
+- Add new connection
+- Give a name and data file as "/home/user/projects/sales/sales.sqlite"
+- Run with dev profile with " cds watch --profile dev"
 
 ## Learn More
 
