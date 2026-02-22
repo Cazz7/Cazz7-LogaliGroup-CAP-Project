@@ -16,9 +16,9 @@ entity SalesHeader : cuid, managed {
     country      : Association to Countries;
     createdOn    : Date;
     deliveryDate : Date;
-    status  : Association to OrderStatus;
-    image     : LargeBinary  @Core.MediaType: imageType  @UI.IsImage;
-    imageType : String @Core.IsMediaType;
+    status       : Association to OrderStatus;
+    image        : LargeBinary  @Core.MediaType: imageType  @UI.IsImage;
+    imageType    : String       @Core.IsMediaType;
     toItems      : Composition of many SalesItems
                        on toItems.header = $self
 }

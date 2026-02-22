@@ -16,7 +16,7 @@ annotate service.SalesItems with {
 };
 
 annotate service.SalesItems with @(
-/*UI.HeaderInfo   : {
+UI.HeaderInfo   : {
         $Type         : 'UI.HeaderInfoType',
         TypeName      : 'Item',
         TypeNamePlural: 'Items',
@@ -28,7 +28,7 @@ annotate service.SalesItems with @(
             $Type: 'UI.DataField',
             Value: header.email
         }
-    },*/
+    },
 UI.LineItem: [
     {
         $Type: 'UI.DataField',
@@ -73,10 +73,6 @@ UI.LineItem: [
     {
         $Type: 'UI.DataField',
         Value: quantity
-    },
-    {
-        $Type: 'UI.DataField',
-        Value: unitOfMeasure
     }
 ],
     UI.FieldGroup  #SalesItem : {
@@ -104,10 +100,6 @@ UI.LineItem: [
             },
             {
                 $Type: 'UI.DataField',
-                Value: currency
-            },
-            {
-                $Type: 'UI.DataField',
                 Value: height
             },
             {
@@ -121,10 +113,6 @@ UI.LineItem: [
             {
                 $Type: 'UI.DataField',
                 Value: quantity
-            },
-            {
-                $Type: 'UI.DataField',
-                Value: unitOfMeasure
             }
         ]
     },

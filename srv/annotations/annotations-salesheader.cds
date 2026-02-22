@@ -54,7 +54,7 @@ annotate service.SalesHeader with @(
         },
         Description   : {
             $Type: 'UI.DataField',
-            Value: createdOn
+            Value: lastname
         }
     },
     //The field group to display details of each Sales Header
@@ -80,11 +80,7 @@ annotate service.SalesHeader with @(
             },
             {
                 @Type: 'UI.DataField',
-                Value: country
-            },
-            {
-                @Type: 'UI.DataField',
-                Value: orderStatus.descr
+                Value: country_code
             }
         ]
     },
@@ -92,36 +88,40 @@ annotate service.SalesHeader with @(
         $Type: 'UI.FieldGroupType',
         //Fields to be grouped
         Data : [
-            {
-                @Type: 'UI.DataField',
-                Value: firstname
-            },
-            {
-                @Type: 'UI.DataField',
-                Value: lastname
-            },
+            
             {
                 @Type: 'UI.DataField',
                 Value: createdOn
+            },
+            {
+                @Type: 'UI.DataField',
+                Value: deliveryDate
+            },
+            {
+                @Type: 'UI.DataField',
+                Value: status.descr
             }
         ]
     },
     UI.FieldGroup #OrderStatus: {
         $Type: 'UI.FieldGroupType',
-        Data : [{
-            $Type      : 'UI.DataField',
-            Value      : status_code,
-            Criticality: status.criticality,
-            Label      : '' /*,
-    @Common.FieldControl: {$edmJson: {$If: [
-        {$Eq: [
-            {$Path: 'IsActiveEntity'},
-            false
-        ]},
-        1,
-        3
-    ]}}*/
-        }]
+        Data : [
+            
+            {
+                $Type               : 'UI.DataField',
+                Value               : status_code,
+                Criticality         : status.criticality,
+                Label               : '',
+                @Common.FieldControl: {$edmJson: {$If: [
+                    {$Eq: [
+                        {$Path: 'IsActiveEntity'},
+                        false
+                    ]},
+                    1,
+                    3
+                ]}}
+            }
+        ]
     },
     //Container[
     UI.HeaderFacets           : [
@@ -143,7 +143,7 @@ annotate service.SalesHeader with @(
         {
             $Type : 'UI.ReferenceFacet',
             Target: '@UI.FieldGroup#OrderStatus',
-            Label : 'Order Status'
+            Label : 'Status'
         }
     ],
 
@@ -192,4 +192,3 @@ annotate service.SalesHeader with @(
         ID    : 'toItems'
     }]
 );
-// 1:40 video 12. Estoy con la duda de que debo poner en el object page para habilitar la navegación
