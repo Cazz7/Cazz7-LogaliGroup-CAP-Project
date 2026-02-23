@@ -28,6 +28,11 @@ File or Folder | Purpose
 - Give a name and data file as "/home/user/projects/sales/sales.sqlite"
 - Run with dev profile with " cds watch --profile dev"
 
+## Github
+ - git add .
+ - git commit - m "Enter a comment"
+ - git push -u origin main (not the best practice in work environment)
+
 ## Learn More
 
 Learn more at https://cap.cloud.sap/docs/get-started/.

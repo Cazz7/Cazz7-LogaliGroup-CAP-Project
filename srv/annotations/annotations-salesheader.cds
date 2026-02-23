@@ -11,7 +11,7 @@ annotate service.SalesHeader with {
     firstname    @title: 'First Name';
     lastname     @title: 'Last Name';
     country      @title: 'Country';
-    createdOn    @title: 'Created On';
+    createdOn    @title: 'Created On' @Common.FieldControl: #ReadOnly;
     deliveryDate @title: 'Delivery Date';
     status       @title: 'Order Status';
     image        @title: 'Image';
@@ -192,3 +192,4 @@ annotate service.SalesHeader with @(
         ID    : 'toItems'
     }]
 );
+// Voy en video 14

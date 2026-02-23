@@ -11,8 +11,7 @@ annotate service.SalesItems with {
     width            @title: 'Width'            @Measures.Unit       : unitOfMeasure;
     depth            @title: 'Depth'            @Measures.Unit       : unitOfMeasure;
     quantity         @title: 'Quantity';
-    unitOfMeasure    @title: 'Unit of Measure'  @Common.IsUnit ; //@Common.FieldControl : #ReadOnly;
-//imageURL        @title: 'Image URL';
+    unitOfMeasure    @title: 'Unit of Measure'  @Common.IsUnit @Common.FieldControl: #ReadOnly;
 };
 
 annotate service.SalesItems with @(
@@ -22,7 +21,8 @@ UI.HeaderInfo   : {
         TypeNamePlural: 'Items',
         Title         : {
             $Type: 'UI.DataField',
-            Value: header.firstname
+            Value: header.firstname,
+
         },
         Description   : {
             $Type: 'UI.DataField',
