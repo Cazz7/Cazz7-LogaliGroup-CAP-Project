@@ -7,11 +7,12 @@ using from './annotations-salesitems';
 annotate service.SalesHeader with @odata.draft.enabled;
 
 annotate service.SalesHeader with {
+    salesID      @title: 'Sales ID' @Common.FieldControl: #ReadOnly;
     email        @title: 'Email';
     firstname    @title: 'First Name';
     lastname     @title: 'Last Name';
     country      @title: 'Country';
-    createdOn    @title: 'Created On' @Common.FieldControl: #ReadOnly;
+    createdOn    @title: 'Created On'  @Common.FieldControl: #ReadOnly;
     deliveryDate @title: 'Delivery Date';
     status       @title: 'Order Status';
     image        @title: 'Image';
@@ -50,11 +51,11 @@ annotate service.SalesHeader with @(
         //Object page (New entry)
         Title         : {
             $Type: 'UI.DataField',
-            Value: firstname
+            Value: salesID
         },
         Description   : {
             $Type: 'UI.DataField',
-            Value: lastname
+            Value: firstname
         }
     },
     //The field group to display details of each Sales Header
@@ -76,6 +77,10 @@ annotate service.SalesHeader with @(
         Data : [
             {
                 @Type: 'UI.DataField',
+                Value: lastname
+            },
+            {
+                @Type: 'UI.DataField',
                 Value: email
             },
             {
@@ -88,7 +93,7 @@ annotate service.SalesHeader with @(
         $Type: 'UI.FieldGroupType',
         //Fields to be grouped
         Data : [
-            
+
             {
                 @Type: 'UI.DataField',
                 Value: createdOn
@@ -106,22 +111,21 @@ annotate service.SalesHeader with @(
     UI.FieldGroup #OrderStatus: {
         $Type: 'UI.FieldGroupType',
         Data : [
-            
-            {
-                $Type               : 'UI.DataField',
-                Value               : status_code,
-                Criticality         : status.criticality,
-                Label               : '',
-                @Common.FieldControl: {$edmJson: {$If: [
-                    {$Eq: [
-                        {$Path: 'IsActiveEntity'},
-                        false
-                    ]},
-                    1,
-                    3
-                ]}}
-            }
-        ]
+
+        {
+            $Type               : 'UI.DataField',
+            Value               : status_code,
+            Criticality         : status.criticality,
+            Label               : '',
+            @Common.FieldControl: {$edmJson: {$If: [
+                {$Eq: [
+                    {$Path: 'IsActiveEntity'},
+                    false
+                ]},
+                1,
+                3
+            ]}}
+        }]
     },
     //Container[
     UI.HeaderFacets           : [
@@ -149,6 +153,10 @@ annotate service.SalesHeader with @(
 
     // Including columns
     UI.LineItem               : [
+        {
+            $Type: 'UI.DataField',
+            Value: salesID
+        },
         {
             $Type: 'UI.DataField',
             Value: email
@@ -192,4 +200,4 @@ annotate service.SalesHeader with @(
         ID    : 'toItems'
     }]
 );
-// Voy en video 14
+// Voy en video 14. Minuto 49

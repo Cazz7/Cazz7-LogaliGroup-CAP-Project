@@ -10,6 +10,7 @@ using {
 
 entity SalesHeader : cuid, managed {
 
+    salesID   : String(8);
     email        : String(40);
     firstname    : String(40);
     lastname     : String(40);
@@ -27,6 +28,7 @@ type volume : Decimal(15, 3);
 
 entity SalesItems : cuid {
 
+    itemID : String(8);
     name             : String(40);
     description      : String(40);
     releasedDate     : Date;
@@ -42,16 +44,15 @@ entity SalesItems : cuid {
 
 }
 
-/*entity OrderStatus : CodeList {
+entity OrderStatus : CodeList {
     key code        : String enum {
             New = 'New';
             Accepted = 'Accepted';
             Cancelled = 'Cancelled';
         }
         criticality : Int16; // 1,2,3,5
-};*/
-
-entity OrderStatus : CodeList {
+};
+/*entity OrderStatus : CodeList {
     key code        : String enum {
             InStock = 'In Stock';
             OutOfStock = 'Out of Stock';
@@ -59,3 +60,4 @@ entity OrderStatus : CodeList {
         }
         criticality : Int16; // 1,2,3,5
 };
+*/

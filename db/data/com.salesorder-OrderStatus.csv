@@ -1,4 +1,4 @@
 code,name,criticality
-InStock,In Stock,3
-OutOfStock,Out Of Stock,1
-LowAvailability,Low Availability,2
+New,New,3
+Accepted,Accepted,1
+Cancelled,Cancelled,2
