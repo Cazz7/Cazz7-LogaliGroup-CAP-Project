@@ -30,7 +30,7 @@ File or Folder | Purpose
 
 ## Github
  - git add .
- - git commit - m "Enter a comment"
+ - git commit -m "Enter a comment"
  - git push -u origin main (not the best practice in work environment)
 
 ## Learn More
