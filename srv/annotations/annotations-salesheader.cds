@@ -7,18 +7,18 @@ using from './annotations-salesitems';
 annotate service.SalesHeader with @odata.draft.enabled;
 
 annotate service.SalesHeader with {
-    salesID      @title: 'Sales ID' @Common.FieldControl: #ReadOnly;
-    email        @title: 'Email';
-    firstname    @title: 'First Name';
-    lastname     @title: 'Last Name';
-    country      @title: 'Country';
-    createdOn    @title: 'Created On'  @Common.FieldControl: #ReadOnly;
-    deliveryDate @title: 'Delivery Date';
-    status       @title: 'Order Status';
-    image        @title: 'Image';
+    salesID      @title: '{i18n>salesID}'      @Common.FieldControl: #ReadOnly;
+    email        @title: '{i18n>email}';
+    firstname    @title: '{i18n>firstname}';
+    lastname     @title: '{i18n>lastname}';
+    country      @title: '{i18n>country}';
+    createdOn    @title: '{i18n>createdOn}'    @Common.FieldControl: #ReadOnly;
+    deliveryDate @title: '{i18n>deliveryDate}';
+    status       @title: '{i18n>status}';
+    image        @title: '{i18n>image}';
 };
 
-//Print text only
+
 annotate service.SalesHeader with {
     country @Common: {
         Text           : country.name,
@@ -46,8 +46,8 @@ annotate service.SalesHeader with @(
     //Header
     UI.HeaderInfo             : {
         $Type         : 'UI.HeaderInfoType',
-        TypeName      : 'Sale',
-        TypeNamePlural: 'Sales',
+        TypeName      : '{i18n>typeNameSale}',
+        TypeNamePlural: '{i18n>typeNameSales}',
         //Object page (New entry)
         Title         : {
             $Type: 'UI.DataField',
@@ -68,7 +68,7 @@ annotate service.SalesHeader with @(
         Data : [{
             @Type: 'UI.DataField',
             Value: image,
-            Label: ''
+            Label: ''                // left untouched
         }]
     },
     UI.FieldGroup #HeaderCol1 : {
@@ -93,7 +93,6 @@ annotate service.SalesHeader with @(
         $Type: 'UI.FieldGroupType',
         //Fields to be grouped
         Data : [
-
             {
                 @Type: 'UI.DataField',
                 Value: createdOn
@@ -111,43 +110,43 @@ annotate service.SalesHeader with @(
     UI.FieldGroup #OrderStatus: {
         $Type: 'UI.FieldGroupType',
         Data : [
-
-        {
-            $Type               : 'UI.DataField',
-            Value               : status_code,
-            Criticality         : status.criticality,
-            Label               : '',
-            @Common.FieldControl: {$edmJson: {$If: [
-                {$Eq: [
-                    {$Path: 'IsActiveEntity'},
-                    false
-                ]},
-                1,
-                3
-            ]}}
-        }]
+            {
+                $Type               : 'UI.DataField',
+                Value               : status_code,
+                Criticality         : status.criticality,
+                Label               : '',          // left untouched
+                @Common.FieldControl: {$edmJson: {$If: [
+                    {$Eq: [
+                        {$Path: 'IsActiveEntity'},
+                        false
+                    ]},
+                    1,
+                    3
+                ]}}
+            }
+        ]
     },
-    //Container[
+    //Container
     UI.HeaderFacets           : [
         {
             $Type : 'UI.ReferenceFacet',
             Target: '@UI.FieldGroup#Image',
-            Label : 'Image'
+            Label : '{i18n>headerFacetImageLabel}'
         },
         {
             $Type : 'UI.ReferenceFacet',
             Target: '@UI.FieldGroup#HeaderCol1',
-            Label : 'General Info'
+            Label : '{i18n>headerFacetGeneralInfoLabel}'
         },
         {
             $Type : 'UI.ReferenceFacet',
             Target: '@UI.FieldGroup#HeaderCol2',
-            Label : 'Name '
+            Label : '{i18n>headerFacetNameLabel}'
         },
         {
             $Type : 'UI.ReferenceFacet',
             Target: '@UI.FieldGroup#OrderStatus',
-            Label : 'Status'
+            Label : '{i18n>headerFacetStatusLabel}'
         }
     ],
 
@@ -192,12 +191,11 @@ annotate service.SalesHeader with @(
         }
     ],
     UI.Facets                 : [
-
-    {
-        $Type : 'UI.ReferenceFacet',
-        Target: 'toItems/@UI.LineItem',
-        Label : 'Sales Item',
-        ID    : 'toItems'
-    }]
+        {
+            $Type : 'UI.ReferenceFacet',
+            Target: 'toItems/@UI.LineItem',
+            Label : '{i18n>salesItemsFacetLabel}', // existing i18n left untouched
+            ID    : 'toItems'
+        }
+    ]
 );
-// Voy en video 14. Minuto 49

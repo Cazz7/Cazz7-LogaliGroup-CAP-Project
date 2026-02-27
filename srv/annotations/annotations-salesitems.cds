@@ -18,12 +18,11 @@ annotate service.SalesItems with {
 annotate service.SalesItems with @(
     UI.HeaderInfo           : {
         $Type         : 'UI.HeaderInfoType',
-        TypeName      : 'Item',
-        TypeNamePlural: 'Items',
+        TypeName      : '{i18n>typeNameItem}',
+        TypeNamePlural: '{i18n>typeNameItems}',
         Title         : {
             $Type: 'UI.DataField',
-            Value: header.salesID,
-
+            Value: header.salesID
         },
         Description   : {
             $Type: 'UI.DataField',
@@ -97,11 +96,11 @@ annotate service.SalesItems with @(
             },
             {
                 $Type: 'UI.DataField',
-                Value: releasedDate,
+                Value: releasedDate
             },
             {
                 $Type: 'UI.DataField',
-                Value: discontinuedDate,
+                Value: discontinuedDate
             },
             {
                 $Type: 'UI.DataField',
@@ -128,7 +127,6 @@ annotate service.SalesItems with @(
     UI.Facets               : [{
         $Type : 'UI.ReferenceFacet',
         Target: '@UI.FieldGroup#SalesItem',
-        Label : 'Sales Items'
+        Label : '{i18n>salesItemsFacetLabel}'
     }]
-
 );
